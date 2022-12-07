@@ -6,7 +6,7 @@
 /*   By: tpinto-e <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:33:47 by tpinto-e          #+#    #+#             */
-/*   Updated: 2022/12/01 21:33:28 by tpinto-e         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:40:50 by tpinto-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ char	*ft_strrchr(const char *s, int c)
 		s++;
 	while (s != ptr)
 	{
-		if (*s == c)
+		if (*(unsigned char *) s == (unsigned char) c)
 			return ((char *) s);
 		s--;
 	}
-	if (*s == c)
+	if (*(unsigned char *) s == (unsigned char) c)
 		return ((char *) s);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 #    By: tpinto-e <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 19:34:32 by tpinto-e          #+#    #+#              #
-#    Updated: 2022/12/01 19:34:33 by tpinto-e         ###   ########.fr        #
+#    Updated: 2022/12/05 17:18:22 by tpinto-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,16 +47,17 @@ SRC = ft_atoi.c \
 	  ft_strtrim.c \
 	  ft_tolower.c \
 	  ft_toupper.c
-BONUS = ft_lstnew\
-		ft_lstadd_front\
-		ft_lstclear\
-		ft_lstdelone\
-		ft_lstiter\
-		ft_lstlast\
-		ft_lstmap\
-		ft_lstadd_back\
-		ft_lstsize
+BONUS = ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c \
+		ft_lstdelone.c \
+		ft_lstclear.c \
+		ft_lstiter.c \
+		ft_lstmap.c 
 OBJ = $(SRC:.c=.o)
+BONUSOBJ = $(BONUS:.c=.o)
 all: $(NAME)
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
@@ -66,19 +67,15 @@ $(NAME): $(OBJ)
 %.o: %.c
 	@cc $(FLAG) -c $< -o $@
 clean:
-	@rm -f $(OBJ) $(BONUS:=.o)
+	@rm -f $(OBJ) $(BONUSOBJ)
 	@echo "OBJ deleted"
 fclean: clean
 	@rm -f $(NAME)
 	@echo "$(NAME) deleted"
 re: fclean all
-bonus:	$(OBJ)	$(BONUS:=.o)
-		@ar rc $(NAME) $(OBJ)	$(BONUS:=.o)
-		@echo "$(NAME) with bonus created"
-		@ranlib $(NAME)
-		@echo "$(NAME) with bonus indexed"
+bonus:	$(OBJ)	$(BONUSOBJ)
+	@ar rc $(NAME) $(OBJ) $(BONUSOBJ)
+	@echo "$(NAME) with bonus created"
+	@ranlib $(NAME)
+	@echo "$(NAME) with bonus indexed"
 .PHONY: all, clean, fclean, re, bonus
-
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ)

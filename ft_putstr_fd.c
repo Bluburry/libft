@@ -6,7 +6,7 @@
 /*   By: tpinto-e <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:09 by tpinto-e          #+#    #+#             */
-/*   Updated: 2022/12/01 19:32:10 by tpinto-e         ###   ########.fr       */
+/*   Updated: 2022/12/07 18:07:56 by tpinto-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (s)
+	if (s && fd >= 0)
 		while (*s)
-			write(fd, s++, 1);
+			ft_putchar_fd(*s++, fd);
 }

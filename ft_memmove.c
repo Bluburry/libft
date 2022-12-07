@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpinto-e <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 19:32:23 by tpinto-e          #+#    #+#             */
-/*   Updated: 2022/12/06 19:38:35 by tpinto-e         ###   ########.fr       */
+/*   Created: 2022/12/01 19:31:38 by tpinto-e          #+#    #+#             */
+/*   Updated: 2022/12/01 21:34:53 by tpinto-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	while (*s)
+	if (!dest && !src)
+		return (NULL);
+	if (src < dest)
 	{
-		if (*(unsigned char *)s == (unsigned char) c)
-			return ((char *) s);
-		s++;
+		while (n--)
+			((char *)dest)[n] = ((char *)src)[n];
 	}
-	if (*(unsigned char *) s == (unsigned char) c)
-		return ((char *) s);
-	return (NULL);
+	else if (src > dest)
+		ft_memcpy(dest, src, n);
+	return (dest);
 }

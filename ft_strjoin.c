@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpinto-e <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 19:31:56 by tpinto-e          #+#    #+#             */
-/*   Updated: 2022/12/07 15:59:00 by tpinto-e         ###   ########.fr       */
+/*   Created: 2022/12/01 20:02:33 by tpinto-e          #+#    #+#             */
+/*   Updated: 2022/12/01 20:02:34 by tpinto-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	if (s && fd >= 0)
-	{
-		ft_putstr_fd(s, fd);
-		ft_putchar_fd('\n', fd);
-	}
+	char	*string;
+	size_t	i;
+	size_t	j;
+
+	if (!s1 || !s2)
+		return (NULL);
+	i = ft_strlen(s1);
+	j = ft_strlen(s2);
+	string = (char *) malloc((i + j + 1) * sizeof(char));
+	if (!string)
+		return (NULL);
+	ft_memmove(string, s1, i);
+	ft_memmove(string + i, s2, j + 1);
+	string[i + j] = 0;
+	return (string);
 }
